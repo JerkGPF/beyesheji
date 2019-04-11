@@ -63,7 +63,7 @@
                 <li><a href="/studentInquireServlet">信息查询</a></li>
                 <li><a href="#">选课报名</a></li>
                 <li><a href="#">业务办理</a></li>
-                <li><a href="#">账号密码重置
+                <li><a href="<%=request.getContextPath()%>/view/student/modify/modifypassword.jsp">账号密码重置
                     <sapn class="glyphicon glyphicon-repeat pull-right"/>
                 </a></li>
                 <li><a href="/logoutServlet">退出系统

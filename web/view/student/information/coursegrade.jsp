@@ -1,16 +1,15 @@
 <%@ page import="entity.StudentBasicInformation" %>
-<%@ page import="entity.LevelExamination" %>
+<%@ page import="entity.StudentGrade" %>
 <%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: 10403
   Date: 2019/4/11
-  Time: 15:16
+  Time: 15:41
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
 <head>
-    <title>考级查询</title>
+    <title>课程成绩</title>
     <style>
         body{
             padding-top: 70px;
@@ -61,51 +60,51 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="row">
-                <h1 style="text-align: center;">考级查询</h1>
+                <h1 style="text-align: center;">课程成绩</h1>
             </div>
         </div>
         <div class="panel-body">
-            <div class="col-md-1"></div>
+            <div class="col-md-2"></div>
             <table border="2" cellpadding="0" cellspacing="0">
                 <tr>
                     <th>学年学期</th>
                     <th>学号</th>
                     <th>学生姓名</th>
-                    <th>考级课程</th>
-                    <th>考级时间</th>
-                    <th>总成绩</th>
-                    <th>学生院系</th>
-                    <th>班级名称</th>
-                    <th>专业</th>
-                    <th>准考证号</th>
-                    <th>听力成绩</th>
-                    <th>阅读成绩</th>
-                    <th>写作成绩</th>
-                    <th>口语成绩</th>
+                    <th>课程编号</th>
+                    <th>课程名称</th>
+                    <th>成绩</th>
+                    <th>绩点</th>
+                    <th>学分</th>
+                    <th>课程大类</th>
+                    <th>修读方式</th>
+                    <th>考试性质</th>
+                    <th>成绩方式</th>
+                    <th>有效</th>
+                    <th>备注</th>
                 </tr>
                 <%
-                    StudentBasicInformation student = (StudentBasicInformation)session.getAttribute("student");
-                    List<LevelExamination> levelExamination = (List<LevelExamination>)session.getAttribute("levelExamination");
+                    List<StudentGrade> studentGrades = (List<StudentGrade>)session.getAttribute("studentGrades");
+
                 %>
                 <%
-                    for(LevelExamination stu : levelExamination){
+                    for(StudentGrade student : studentGrades){
 
                 %>
                 <tr>
-                    <td><%= stu.getYearTerm()%></td>
-                    <td><%= stu.getStudentId()%></td>
+                    <td><%= student.getYearTerm()%></td>
+                    <td><%= student.getStudentId()%></td>
                     <td><%= student.getStudentName()%></td>
-                    <td><%= stu.getLevelEaxmCourse()%></td>
-                    <td><%= stu.getEaxmTime()%></td>
-                    <td><%= stu.getGrade() %></td>
-                    <td><%= student.getAcademy() %></td>
-                    <td><%= student.getClassName() %></td>
-                    <td><%= student.getProfession() %></td>
-                    <td><%= stu.getExamId() %></td>
-                    <td><%= stu.getListenGrade() %></td>
-                    <td><%= stu.getReadingGrade() %></td>
-                    <td><%= stu.getWritingGrade() %></td>
-                    <td><%= stu.getSpokenGrade() %></td>
+                    <td><%= student.getCourseId()%></td>
+                    <td><%= student.getCourseName()%></td>
+                    <td><%= student.getScore() %></td>
+                    <td><%= student.getGradePoint() %></td>
+                    <td><%= student.getCredit() %></td>
+                    <td><%= student.getCourseClass() %></td>
+                    <td><%= student.getStudyWay() %></td>
+                    <td><%= student.getExamWay() %></td>
+                    <td><%= student.getGradeWay() %></td>
+                    <td><%= student.getEffectivity() %></td>
+                    <td><%= student.getRemarks() %></td>
                 </tr>
                 <%
                     }

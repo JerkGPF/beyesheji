@@ -53,7 +53,6 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-
 <!--侧边栏-->
 <div class="container " id="content">
     <div class="row">
@@ -62,7 +61,7 @@
                 <li data-toggle="modal" data-target="#myModal"><a href="#">信息查询</a></li>
                 <li><a href="/view/student/student.jsp">选课报名</a></li>
                 <li><a href="#">业务办理</a></li>
-                <li><a href="#">账号密码重置
+                <li><a href="<%=request.getContextPath()%>/view/student/modify/modifypassword.jsp">账号密码重置
                     <sapn class="glyphicon glyphicon-repeat pull-right"/>
                 </a></li>
                 <li><a href="/logoutServlet">退出系统
@@ -70,7 +69,6 @@
                 </a></li>
             </ul>
         </div>
-
         <!--主体-->
         <div class="col-md-10">
             <div class="panel panel-default">
@@ -97,7 +95,6 @@
                                        placeholder="请输入姓名" value="${requestScope.studentBasicInformation.studentName }">
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label for="sex" class="col-sm-2 control-label">性别</label>
                             <div class="col-sm-10">
@@ -105,7 +102,6 @@
                                        placeholder="请输入性别" value="${requestScope.studentBasicInformation.gender }" disabled>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label for="className" class="col-sm-2 control-label">班级</label>
                             <div class="col-sm-10">
@@ -113,12 +109,9 @@
                                        placeholder="请输入班级" value="${requestScope.studentBasicInformation.className }" disabled>
                             </div>
                         </div>
-
                     </form>
                 </div>
-
             </div>
-
         </div>
 
         <!-- 模态框（Modal） -->
@@ -137,8 +130,8 @@
                         <li><a href="<%=request.getContextPath()%>/studentInformationServlet">学籍信息</a></li>
                         <li><a href="/view/student/information/timeTable.jsp">课表查询</a></li>
                         <li><a href="<%=request.getContextPath()%>/studentquery.query">考级查询</a></li>
-                        <li><a href="#">成绩查询</a></li>
-                        <li><a href="#">考试安排</a></li>
+                        <li><a href="<%=request.getContextPath()%>/studentQuery.grade">成绩查询</a></li>
+                        <li><a href="<%=request.getContextPath()%>/view/student/information/exam.jsp">考试安排</a></li>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭
