@@ -61,8 +61,7 @@
         <div class="col-md-2 ">
             <ul class="nav nav-pills nav-stacked" id="nav">
                 <li><a href="/studentInquireServlet">信息查询</a></li>
-                <li><a href="#">选课报名</a></li>
-                <li><a href="#">业务办理</a></li>
+                <li><a href="/view/student/student.jsp">课程管理</a></li>
                 <li><a href="<%=request.getContextPath()%>/view/student/modify/modifypassword.jsp">账号密码重置
                     <sapn class="glyphicon glyphicon-repeat pull-right"/>
                 </a></li>
@@ -76,7 +75,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
-                        <h1 class="col-md-7">选修课报名</h1>
+                        <h1 class="col-md-7">所有课程</h1>
                         <form class="bs-example bs-example-form col-md-5" role="form" style="margin: 20px 0 10px 0;"
                               action="<%=request.getContextPath()%>/queryOptionalCourse.optional" id="form1" method="post">
                             <div>
@@ -159,30 +158,7 @@
 <script type="text/javascript">
     <%--设置菜单中--%>
     $("#nav li:nth-child(2)").addClass("active")
-    <c:if test="${pagingVO != null}">
-    if (${pagingVO.curentPageNo} == ${pagingVO.totalCount}) {
-        $(".pagination li:last-child").addClass("disabled")
-    }
-    ;
 
-    if (${pagingVO.curentPageNo} == ${1}) {
-        $(".pagination li:nth-child(1)").addClass("disabled")
-    }
-    ;
-    </c:if>
-
-    function confirmd() {
-        var msg = "您真的确定要删除吗？！";
-        if (confirm(msg) == true) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    $("#sub").click(function () {
-        $("#form1").submit();
-    });
 </script>
 </body>
 

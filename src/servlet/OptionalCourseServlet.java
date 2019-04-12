@@ -48,6 +48,7 @@ public class OptionalCourseServlet extends HttpServlet {
         }
     }
 
+
     //查询选修课程信息
     @SuppressWarnings("unused")
     private void queryOptionalCourse(HttpServletRequest request, HttpServletResponse response)
@@ -92,6 +93,7 @@ public class OptionalCourseServlet extends HttpServlet {
         soc.insert(studentOptCourse);
 
         session.setAttribute("message", "报名成功!");
+
 
         response.sendRedirect(request.getContextPath() + "/view/student/student.jsp");
     }

@@ -1,22 +1,22 @@
 <%--
   Created by IntelliJ IDEA.
   User: 10403
-  Date: 2019/4/8
-  Time: 14:07
+  Date: 2019/4/12
+  Time: 11:45
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>信息查询</title>
-    <style>
-        body{
-            padding-top: 70px;
-        }
-    </style>
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-</head>
+    <head>
+        <title>课程信息</title>
+        <style>
+            body{
+                padding-top: 70px;
+            }
+        </style>
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+    </head>
 <body>
 
 <!--导航栏-->
@@ -44,7 +44,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.user.name },您好！ <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/studentInquireServlet">个人信息</a></li>
+                        <li><a href="/teacherInquireServlet">个人信息</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="/logoutServlet">注销</a></li>
                     </ul>
@@ -58,8 +58,11 @@
     <div class="row">
         <div class="col-md-2 ">
             <ul class="nav nav-pills nav-stacked" id="nav">
-                <li data-toggle="modal" data-target="#myModal"><a href="#">信息查询</a></li>
-                <li><a href="/view/student/student.jsp">课程管理</a></li>
+                <li><a href="/teacherInquireServlet">个人信息</a></li>
+                <li><a href="#">班级信息</a></li>
+                <li><a href="#">课程信息</a></li>
+                <li><a href="#">成绩录入</a></li>
+                <li><a href="#">修改成绩</a></li>
                 <li><a href="<%=request.getContextPath()%>/view/student/modify/modifypassword.jsp">账号密码重置
                     <sapn class="glyphicon glyphicon-repeat pull-right"/>
                 </a></li>
@@ -77,35 +80,56 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <form name="reset" class="form-horizontal" role="form" action="<%=request.getContextPath()%>/studentInformationServlet"
+                    <form name="reset" class="form-horizontal" role="form" action="<%=request.getContextPath()%>/teacherInformationServlet"
                           id="editfrom"
                           method="post" onsubmit="return check()">
                         <div class="form-group">
-                            <label for="userID" class="col-sm-2 control-label">学号</label>
+                            <label for="userID" class="col-sm-2 control-label">教师编号</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="studentId" id="userID"
-                                       value="${requestScope.studentBasicInformation.studentId }" disabled>
+                                <input type="text" class="form-control" name="teacherId" id="userID"
+                                       value="${requestScope.teacher.teacherId}" disabled>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="userName" class="col-sm-2 control-label">姓名</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="studentName" id="userName"
-                                       placeholder="请输入姓名" value="${requestScope.studentBasicInformation.studentName }">
+                                <input type="text" class="form-control" name="teacherName" id="userName"
+                                       placeholder="请输入姓名" value="${requestScope.teacher.teacherName }">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="sex" class="col-sm-2 control-label">性别</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="gender" id="sex"
-                                       placeholder="请输入性别" value="${requestScope.studentBasicInformation.gender }" disabled>
+                                       placeholder="请输入性别" value="${requestScope.teacher.gender }" disabled>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="className" class="col-sm-2 control-label">班级</label>
+                            <label for="politicStatus" class="col-sm-2 control-label">政治面貌</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="className" id="className"
-                                       placeholder="请输入班级" value="${requestScope.studentBasicInformation.className }" disabled>
+                                <input type="text" class="form-control" name="politicstatus" id="politicStatus"
+                                       placeholder="" value="${requestScope.teacher.politicstatus }" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Nation" class="col-sm-2 control-label">民族</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="nation" id="Nation"
+                                       placeholder="" value="${requestScope.teacher.nation }" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nativePlace" class="col-sm-2 control-label">籍贯</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="nativeplace" id="nativePlace"
+                                       placeholder="" value="${requestScope.teacher.nativeplace }" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="academy" class="col-sm-2 control-label">学院</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="academy" id="academy"
+                                       placeholder="" value="${requestScope.teacher.academy }" disabled>
                             </div>
                         </div>
                     </form>
@@ -113,33 +137,6 @@
             </div>
         </div>
 
-        <!-- 模态框（Modal） -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                            &times;
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            信息查询
-                        </h4>
-                    </div>
-                    <div class="modal-body">
-                        <li><a href="<%=request.getContextPath()%>/studentInformationServlet">学籍信息</a></li>
-                        <li><a href="/view/student/information/timeTable.jsp">课表查询</a></li>
-                        <li><a href="<%=request.getContextPath()%>/studentquery.query">考级查询</a></li>
-                        <li><a href="<%=request.getContextPath()%>/studentQuery.grade">成绩查询</a></li>
-                        <li><a href="<%=request.getContextPath()%>/view/student/information/exam.jsp">考试安排</a></li>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                        </button>
-
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal -->
-        </div>
     </div>
 </div>
 <script src="/js/jquery-3.2.1.min.js"></script>
@@ -147,7 +144,7 @@
 <script src="/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     <%--设置菜单中--%>
-    $("#nav li:nth-child(1)").addClass("active")
+    $("#nav li:nth-child(3)").addClass("active")
 
 </script>
 </body>

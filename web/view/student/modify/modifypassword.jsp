@@ -79,23 +79,6 @@
                 <div>
                     <input type="hidden" name="token" value="<%=tokenValue %>"/>
                 </div>
-                <%--<div class="form-group">--%>
-                    <%--<div class="col-sm-10">--%>
-                        <%--旧密码：<input type="password" name="oldpassword"/>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-                <%--<br>--%>
-                <%--<div class="form-group">--%>
-                    <%--<div class="col-sm-10">--%>
-                        <%--新密码：<input type="password" name="newpassword"/>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-                <%--<br>--%>
-                <%--<div class="form-group">--%>
-                    <%--<div class="col-sm-10">--%>
-                        <%--确认密码：<input type="password" name="confirmpassword"/>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
 
                 <div class="form-group">
                     <label for="oldpassword" class="col-sm-2 control-label">旧密码</label>
@@ -131,9 +114,11 @@
     </div>
 
 </div>
+<%--设置菜单中--%>
+
 <script src="/js/jquery-3.2.1.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。也可以根据需要只加载单个插件。 -->
-<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js">$("#nav li:nth-child(3)").addClass("active")</script>
 </body>
 </html>
 
