@@ -28,7 +28,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/studentInquireServlet">教务管理系统</a>
+            <a class="navbar-brand" href="/teacherInquireServlet">教务管理系统</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -59,7 +59,11 @@
             <div class="row">
                 <h1 style="text-align: center;">个人信息</h1>
             </div>
+            <div>
+                <font color="RED">${requestScope.message }</font>
+            </div>
         </div>
+
         <div class="panel-body">
             <form name="reset" class="form-horizontal" role="form" action="<%=request.getContextPath()%>/teacherInformationServlet"
                   id="editfrom"
@@ -67,22 +71,22 @@
                 <div class="form-group">
                     <label for="userID" class="col-sm-2 control-label">教师编号</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="teacherId" id="userID"
-                               value="${requestScope.teacher.teacherId}" disabled>
+                        <input type="text" class="form-control"readonly="readonly" name="teacherId" id="userID"
+                               value="${requestScope.teacher.teacherId}" >
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="userName" class="col-sm-2 control-label">姓名</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="teacherName" id="userName"
+                        <input type="text" class="form-control" readonly="readonly"name="teacherName" id="userName"
                                placeholder="请输入姓名" value="${requestScope.teacher.teacherName }">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="sex" class="col-sm-2 control-label">性别</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="gender" id="sex"
-                               placeholder="请输入性别" value="${requestScope.teacher.gender }" disabled>
+                        <input type="text" class="form-control" readonly="readonly"name="gender" id="sex"
+                               placeholder="请输入性别" value="${requestScope.teacher.gender }" >
                     </div>
                 </div>
                 <div class="form-group">
@@ -95,29 +99,29 @@
                 <div class="form-group">
                     <label for="Nation" class="col-sm-2 control-label">民族</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="nation" id="Nation"
-                               placeholder="" value="${requestScope.teacher.nation }" disabled>
+                        <input type="text" class="form-control"readonly="readonly" name="nation" id="Nation"
+                               placeholder="" value="${requestScope.teacher.nation }" >
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="nativePlace" class="col-sm-2 control-label">籍贯</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="nativeplace" id="nativePlace"
-                               placeholder="" value="${requestScope.teacher.nativeplace }" disabled>
+                        <input type="text" class="form-control" readonly="readonly"name="nativeplace" id="nativePlace"
+                               placeholder="" value="${requestScope.teacher.nativeplace }" >
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="academy" class="col-sm-2 control-label">学院</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="academy" id="academy"
-                               placeholder="" value="${requestScope.teacher.academy }" disabled>
+                        <input type="text" class="form-control" readonly="readonly"name="academy" id="academy"
+                               placeholder="" value="${requestScope.teacher.academy }" >
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="profession" class="col-sm-2 control-label">专业</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="profession" id="profession"
-                               placeholder="" value="${requestScope.teacher.profession }" disabled>
+                        <input type="text" class="form-control" readonly="readonly"name="profession" id="profession"
+                               placeholder="" value="${requestScope.teacher.profession }" >
                     </div>
                 </div>
                 <div class="form-group">

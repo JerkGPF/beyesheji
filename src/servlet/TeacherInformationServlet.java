@@ -62,6 +62,7 @@ public class TeacherInformationServlet extends HttpServlet {
 
         Enumeration<String> en = request.getParameterNames();
         List<String> parameterValues = new ArrayList<>();
+
         while(en.hasMoreElements()){
             parameterValues.add(request.getParameter(en.nextElement()));
         }
@@ -69,7 +70,7 @@ public class TeacherInformationServlet extends HttpServlet {
         teacher = new Teacher(parameterValues.get(0), parameterValues.get(1),
                 parameterValues.get(2), parameterValues.get(3), parameterValues.get(4),
                 parameterValues.get(6), parameterValues.get(7), parameterValues.get(5),
-                parameterValues.get(8), parameterValues.get(10), parameterValues.get(9));
+                parameterValues.get(8), parameterValues.get(9), parameterValues.get(10));
 
         return teacher;
     }
