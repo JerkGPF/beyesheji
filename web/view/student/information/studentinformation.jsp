@@ -71,7 +71,7 @@
                     <label for="userID" class="col-sm-2 control-label">学号</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="studentId" id="userID"
-                               value="${requestScope.studentBasicInformation.studentId }" disabled>
+                               readonly="readonly" value="${requestScope.studentBasicInformation.studentId }" >
                     </div>
                 </div>
                 <div class="form-group">
@@ -85,24 +85,24 @@
                 <div class="form-group">
                     <label for="sex" class="col-sm-2 control-label">性别</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="gender" id="sex"
-                               placeholder="请输入性别" value="${requestScope.studentBasicInformation.gender }" disabled>
+                        <input type="text" class="form-control" name="gender" id="sex" readonly="readonly"
+                               placeholder="请输入性别" value="${requestScope.studentBasicInformation.gender }" >
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="className" class="col-sm-2 control-label">班级</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="className" id="className"
-                               placeholder="请输入班级" value="${requestScope.studentBasicInformation.className }" disabled>
+                        <input type="text" class="form-control" name="className" id="className" readonly="readonly"
+                               placeholder="请输入班级" value="${requestScope.studentBasicInformation.className }" >
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="grade" class="col-sm-2 control-label">入学时间</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="grade" id="grade"
-                               placeholder="请输入入学时间" value="${requestScope.studentBasicInformation.grade }" disabled>
+                        <input type="text" class="form-control" name="grade" id="grade" readonly="readonly"
+                               placeholder="请输入入学时间" value="${requestScope.studentBasicInformation.grade }" >
                     </div>
                 </div>
 
