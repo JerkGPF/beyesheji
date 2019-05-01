@@ -92,7 +92,7 @@ public class DAO<T> {
         Connection conn = null;
         try {
             conn = JDBCUtils.getConnection();
-            qr.update(conn, sql, args);
+            qr.update(conn, sql,args);
         } catch (Exception e) {
             e.printStackTrace();
         }finally{

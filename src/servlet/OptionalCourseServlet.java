@@ -48,7 +48,6 @@ public class OptionalCourseServlet extends HttpServlet {
         }
     }
 
-
     //查询选修课程信息
     @SuppressWarnings("unused")
     private void queryOptionalCourse(HttpServletRequest request, HttpServletResponse response)
@@ -85,6 +84,7 @@ public class OptionalCourseServlet extends HttpServlet {
         StudentOptCourse studentOptCourse = new StudentOptCourse(user.getUsername(), courseId);
         if(soc.get(studentOptCourse) != null){
             session.setAttribute("message", "该课程已报名，请勿重复报名!");
+
 
             response.sendRedirect(request.getContextPath() + "/view/student/student.jsp");
 

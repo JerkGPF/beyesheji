@@ -1,7 +1,9 @@
 package entity;
 
 public class StudentBasicInformation extends Student{
+    private  Long studentId;//id
 
+    private String studentName;//姓名
 
     private String gender;  //性别
 

@@ -19,7 +19,11 @@ public interface StudentOptCourseDAO {
 
     public void delete(String studentId);
 
-
+    /**
+     * 返回和studentId相等的记录数
+     * @param studentId
+     * @return
+     */
     public long getCountWithName(String studentId);
 
 }

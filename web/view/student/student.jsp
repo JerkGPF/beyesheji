@@ -62,6 +62,8 @@
             <ul class="nav nav-pills nav-stacked" id="nav">
                 <li><a href="/studentInquireServlet">信息查询</a></li>
                 <li><a href="/view/student/student.jsp">课程管理</a></li>
+                <li><a href="/view/student/management/delayapply.jsp">缓考申请</a> </li>
+                <li><a href="/view/student/management/freeapply.jsp">免修申请</a> </li>
                 <li><a href="<%=request.getContextPath()%>/view/student/modify/modifypassword.jsp">账号密码重置
                     <sapn class="glyphicon glyphicon-repeat pull-right"/>
                 </a></li>
