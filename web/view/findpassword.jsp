@@ -11,8 +11,8 @@
 <html>
 <head>
     <title>密码找回</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/login_background.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/login_background.css">
 </head>
 <body>
 <!-- 找回密码页面 -->
@@ -40,7 +40,7 @@
                 </div>
                 <br>
                 <div>
-                    凭据默认是身份证或护照
+                    凭据默认是123456789
                 </div>
                 <br/>
                 <a href="<%=request.getContextPath() %>/view/login.jsp" class="btn btn-warning col-md-4">返回登录</a>
@@ -51,8 +51,8 @@
     </div>
 </div>
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="../js/jquery-3.2.1.min.js"></script>
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="/js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>

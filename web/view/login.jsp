@@ -12,8 +12,8 @@
   <head>
     <title>用户登录</title>
     <!-- Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/login_background.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/login_background.css">
   </head>
   <body>
   <div class="container">
@@ -47,8 +47,8 @@
     </div>
   </div>
   <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-  <script src="/js/jquery-3.2.1.min.js"></script>
+  <script src="../js/jquery-3.2.1.min.js"></script>
   <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-  <script src="/js/bootstrap.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
   </body>
 </html>
