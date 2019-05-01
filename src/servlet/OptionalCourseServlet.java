@@ -52,6 +52,7 @@ public class OptionalCourseServlet extends HttpServlet {
     @SuppressWarnings("unused")
     private void queryOptionalCourse(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         String yearTerm = request.getParameter("yearTerm");
