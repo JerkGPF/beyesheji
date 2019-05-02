@@ -2,7 +2,7 @@ package impl;
 
 import dao.DAO;
 import dao.UserDAO;
-import entity.CriterUser;
+import entity.student.CriterUser;
 import entity.User;
 
 import java.util.List;

@@ -1,5 +1,5 @@
-<%@ page import="entity.StudentBasicInformation" %>
-<%@ page import="entity.LevelExamination" %>
+<%@ page import="entity.student.StudentBasicInformation" %>
+<%@ page import="entity.student.LevelExamination" %>
 <%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: 10403

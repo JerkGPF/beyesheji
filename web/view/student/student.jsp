@@ -1,4 +1,4 @@
-<%@ page import="entity.OptionalCourse" %>
+<%@ page import="entity.student.OptionalCourse" %>
 <%@ page import="java.util.Map" %><%--
   Created by IntelliJ IDEA.
   User: 10403

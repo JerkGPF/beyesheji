@@ -1,4 +1,4 @@
-<%@ page import="entity.ExamArrange" %>
+<%@ page import="entity.student.ExamArrange" %>
 <%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: 10403
