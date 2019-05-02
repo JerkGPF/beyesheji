@@ -21,6 +21,8 @@ public class ExamArrangeServlet extends HttpServlet {
     ExamArrangeDAO e = new ExamArrangeDAOImpl();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");//防止乱码
+
         HttpSession session = request.getSession();
         String yearTerm = request.getParameter("yearTerm");
         User user = (User) session.getAttribute("user");

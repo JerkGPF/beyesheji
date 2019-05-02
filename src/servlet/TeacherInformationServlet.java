@@ -25,6 +25,8 @@ public class TeacherInformationServlet extends HttpServlet {
 
     //获得教师信息，转换到显示页面显示教师信息
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");//防止乱码
+
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         Teacher teacher = get(user);
@@ -47,6 +49,8 @@ public class TeacherInformationServlet extends HttpServlet {
     //修改教师信息，转换回到显示页面显示修改后的教师信息
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");//防止乱码
+
         Teacher teacher = getTeacher(request, response);
 
         //调用DAO修改数据库中的信息
@@ -58,6 +62,8 @@ public class TeacherInformationServlet extends HttpServlet {
 
     private Teacher getTeacher(HttpServletRequest request,
                                HttpServletResponse response)throws ServletException, IOException{
+        request.setCharacterEncoding("UTF-8");//防止乱码
+
         Teacher teacher = null;
 
         Enumeration<String> en = request.getParameterNames();

@@ -23,6 +23,8 @@ public class LoginServlet extends HttpServlet {
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");//防止乱码
+
 
         //获取请求参数username和password
         String username = request.getParameter("username");

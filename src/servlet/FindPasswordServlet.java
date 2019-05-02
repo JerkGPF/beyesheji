@@ -16,6 +16,8 @@ public class FindPasswordServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");//防止乱码
+
         HttpSession session = request.getSession();
 
         //获取请求参数username和idCard

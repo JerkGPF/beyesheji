@@ -37,20 +37,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <form class="navbar-form navbar-left">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <button type="submit" class="btn btn-default">搜索</button>
-                </form>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人 <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.user.name },您好！ <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">修改个人信息</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">注销</a></li>
+                        <li><a href="/logoutServlet">注销</a></li>
                     </ul>
                 </li>
             </ul>
@@ -65,13 +55,10 @@
                 <li><a href="#">课程管理</a></li>
                 <li><a href="/admin/showStudent">学生管理</a></li>
                 <li><a href="/admin/showTeacher">教师管理</a></li>
-                <li><a href="/admin/userPasswordRest">账号密码重置
+                <li><a href="<%=request.getContextPath()%>/view/student/modify/modifypassword.jsp">账号密码重置
                     <sapn class="glyphicon glyphicon-repeat pull-right"/>
                 </a></li>
-                <li><a href="/admin/passwordRest">修改密码
-                    <sapn class="glyphicon glyphicon-pencil pull-right"/>
-                </a></li>
-                <li><a href="/logout">退出系统
+                <li><a href="/logoutServlet">退出系统
                     <sapn class="glyphicon glyphicon-log-out pull-right"/>
                 </a></li>
             </ul>

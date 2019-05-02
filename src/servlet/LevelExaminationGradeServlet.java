@@ -29,6 +29,8 @@ public class LevelExaminationGradeServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");//防止乱码
+
         //1.获取ServletPath：/studentquery.query
         String servletPath = request.getServletPath();
         //2.去除 / 和 .query ，得到类似于studentquery这样的字符串

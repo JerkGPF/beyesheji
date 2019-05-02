@@ -23,6 +23,7 @@ public class StuInfServlet extends HttpServlet {
 
     //获得学生信息，转换到显示页面显示学生信息
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");//防止乱码
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         StudentBasicInformation sbi = get(user);
@@ -46,6 +47,8 @@ public class StuInfServlet extends HttpServlet {
     //修改学生信息，转换到显示页面显示修改后的学生信息
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");//防止乱码
+
         StudentBasicInformation sbi = getStuInformation(request, response);
 
         //调用DAO修改数据库中的信息
@@ -58,6 +61,8 @@ public class StuInfServlet extends HttpServlet {
 
     private StudentBasicInformation getStuInformation(HttpServletRequest request,
                                                       HttpServletResponse response)throws ServletException, IOException{
+        request.setCharacterEncoding("UTF-8");//防止乱码
+
         StudentBasicInformation sbi = null;
 
         Enumeration<String> en = request.getParameterNames();
