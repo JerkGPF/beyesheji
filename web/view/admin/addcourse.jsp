@@ -1,14 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: 10403
-  Date: 2019/5/1
-  Time: 13:40
+  Date: 2019/5/3
+  Time: 17:15
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>免修申请</title>
+    <title>添加课程</title>
     <style>
         body{
             padding-top: 70px;
@@ -28,7 +28,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/studentInquireServlet">教务管理系统</a>
+            <a class="navbar-brand" href="/optStudent.List">教务管理系统</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -42,8 +42,6 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.user.name },您好！ <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/studentInquireServlet">个人信息</a></li>
-                        <li role="separator" class="divider"></li>
                         <li><a href="/logoutServlet">注销</a></li>
                     </ul>
                 </li>
@@ -57,49 +55,81 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="row">
-                <h1 style="text-align: center;">免修申请</h1>
+                <h1 style="text-align: center;">添加课程信息</h1>
             </div>
         </div>
+        <div>
+            <font color="RED">${requestScope.message }</font>
+        </div>
         <div class="panel-body">
-            <form name="reset" class="form-horizontal" role="form" action="<%=request.getContextPath()%>/exemptionApplyServlet"   id="editfrom"
+            <form name="reset" class="form-horizontal" role="form" action="<%=request.getContextPath()%>/addCourse.List"
+                  id="editfrom"
                   method="post" onsubmit="return check()">
-                <div>
-                    <font color="RED">${sessionScope.message }	</font>
-                    <%session.removeAttribute("message"); %>
-                </div>
-                <div class="col-sm-1"></div>
                 <div class="form-group">
                     <label for="" class="col-sm-2 control-label">学年学期</label>
-                    <div class="col-sm-5">
-                        <select name="yearTerm" id="" class="form-control">
-                            <option value=""></option>
-                            <option value="2017秋季">2017秋季</option>
-                            <option value="2017春季">2017春季</option>
-                            <option value="2016秋季">2016秋季</option>
-                            <option value="2016春季">2016春季</option>
-                        </select>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="yearTerm" id=""
+                               placeholder="请输入学年学期">
                     </div>
                 </div>
-                <div class="col-sm-1"></div>
                 <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">免修课程</label>
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control" name="courseName" id="">
+                    <label for="" class="col-sm-2 control-label">课程编号</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="courseId" id=""
+                               placeholder="请输入课程编号">
                     </div>
                 </div>
-                <div class="col-sm-1"></div>
                 <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">免修原因</label>
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control" name="applyReason" id="">
+                    <label for="" class="col-sm-2 control-label">课程名称</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="courseName" id=""
+                               placeholder="请输入课程名称">
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">学分</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="credit" id=""
+                               placeholder="请输入学分分值" >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">课程类型</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="courseType" id=""
+                               placeholder="请输入课程类型"  >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">任课老师</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="teacher" id=""
+                               placeholder="请输入任课老师"  >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">上课方式</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="classWay" id=""
+                               placeholder="请输入上课方式"  >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">上课时间</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="classTime" id=""
+                               placeholder="请输入上课时间"  >
+                    </div>
+                </div>
+
+
                 <div class="form-group" style="text-align: center">
                     <button class="btn btn-default" type="submit">提交</button>
                     <button class="btn btn-default" type="reset">重置</button>
                 </div>
             </form>
-
         </div>
 
     </div>
@@ -110,4 +140,3 @@
 <script src="/js/bootstrap.min.js"></script>
 </body>
 </html>
-

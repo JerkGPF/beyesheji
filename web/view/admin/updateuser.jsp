@@ -1,14 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: 10403
-  Date: 2019/5/1
-  Time: 13:40
+  Date: 2019/5/3
+  Time: 15:37
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>免修申请</title>
+    <title>修改用户信息</title>
     <style>
         body{
             padding-top: 70px;
@@ -28,7 +28,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/studentInquireServlet">教务管理系统</a>
+            <a class="navbar-brand" href="/query.do">教务管理系统</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -42,8 +42,6 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${sessionScope.user.name },您好！ <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/studentInquireServlet">个人信息</a></li>
-                        <li role="separator" class="divider"></li>
                         <li><a href="/logoutServlet">注销</a></li>
                     </ul>
                 </li>
@@ -57,49 +55,60 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="row">
-                <h1 style="text-align: center;">免修申请</h1>
+                <h1 style="text-align: center;">修改用户信息</h1>
             </div>
         </div>
+        <div>
+            <font color="RED">${requestScope.message }</font>
+        </div>
         <div class="panel-body">
-            <form name="reset" class="form-horizontal" role="form" action="<%=request.getContextPath()%>/exemptionApplyServlet"   id="editfrom"
+            <form name="reset" class="form-horizontal" role="form" action="<%=request.getContextPath()%>/update.do"
+                  id="editfrom"
                   method="post" onsubmit="return check()">
-                <div>
-                    <font color="RED">${sessionScope.message }	</font>
-                    <%session.removeAttribute("message"); %>
-                </div>
-                <div class="col-sm-1"></div>
                 <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">学年学期</label>
-                    <div class="col-sm-5">
-                        <select name="yearTerm" id="" class="form-control">
-                            <option value=""></option>
-                            <option value="2017秋季">2017秋季</option>
-                            <option value="2017春季">2017春季</option>
-                            <option value="2016秋季">2016秋季</option>
-                            <option value="2016春季">2016春季</option>
-                        </select>
+                    <label for="userID" class="col-sm-2 control-label">用户id</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="oldUsername" id="userID"
+                               value="${requestScope.user.username} ">
                     </div>
                 </div>
-                <div class="col-sm-1"></div>
                 <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">免修课程</label>
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control" name="courseName" id="">
+                    <label for="password" class="col-sm-2 control-label">登录密码</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="password" id="password"
+                               value="${requestScope.user.password} ">
                     </div>
                 </div>
-                <div class="col-sm-1"></div>
                 <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">免修原因</label>
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control" name="applyReason" id="">
+                    <label for="userName" class="col-sm-2 control-label">姓名</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="name" id="userName"
+                               value="${requestScope.user.name} ">
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label for="id" class="col-sm-2 control-label">用户身份</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="identity" id="id"
+                               value="${requestScope.user.identity} " >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">密码找回凭据</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="findMMproof" id=""
+                               value="${requestScope.user.findMMproof} ">
+                    </div>
+                </div>
+
+
                 <div class="form-group" style="text-align: center">
                     <button class="btn btn-default" type="submit">提交</button>
                     <button class="btn btn-default" type="reset">重置</button>
                 </div>
             </form>
-
         </div>
 
     </div>

@@ -1,4 +1,5 @@
-<%--
+<%@ page import="entity.User" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: 10403
   Date: 2019/3/25
@@ -52,9 +53,9 @@
     <div class="row">
         <div class="col-md-2 ">
             <ul class="nav nav-pills nav-stacked" id="nav">
-                <li><a href="#">课程管理</a></li>
-                <li><a href="/admin/showStudent">学生管理</a></li>
-                <li><a href="/admin/showTeacher">教师管理</a></li>
+                <li><a href="/optStudent.List">课程管理</a></li>
+                <li><a href="#">成绩管理</a></li>
+                <li><a href="/query.do">用户管理</a></li>
                 <li><a href="<%=request.getContextPath()%>/view/student/modify/modifypassword.jsp">账号密码重置
                     <sapn class="glyphicon glyphicon-repeat pull-right"/>
                 </a></li>
@@ -68,56 +69,62 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
-                        <h1 class="col-md-5">学生名单管理</h1>
+                        <h1 class="col-md-5">用户名单管理</h1>
                         <form class="bs-example bs-example-form col-md-5" role="form" style="margin: 20px 0 10px 0;"
-                              action="/admin/selectStudent" id="form1" method="post">
+                              action="query.do" id="form1" method="post">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="请输入姓名" name="findByName">
+                                <input type="text" class="form-control" placeholder="请输入关键字" name="findByName">
                                 <span class="input-group-addon btn" id="sub">搜索</span>
                             </div>
                         </form>
                         <button class="btn btn-default col-md-2" style="margin-top: 20px"
-                                onClick="location.href='/admin/addStudent'">
+                                onClick="location.href='/view/admin/adduser.jsp'">
                             添加用户信息
                             <sapn class="glyphicon glyphicon-plus"/>
                         </button>
 
                     </div>
                 </div>
+                <%
+                    List<User> users = (List<User>)request.getAttribute("users");
+                    if(users != null && users.size() > 0){
+                %>
                 <table class="table table-bordered">
-                    <thead>
                     <tr>
                         <th>学号</th>
+                        <th>密码</th>
                         <th>姓名</th>
-                        <th>性别</th>
-                        <th>出生年份</th>
-                        <th>入学时间</th>
-                        <th>学院</th>
+                        <th>身份</th>
+                        <th>找回密码凭据</th>
+                        <th>最近登录时间</th>
+                        <th>最近修改密码时间</th>
                         <th>操作</th>
                     </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${studentList}" var="item">
-                        <tr>
-                            <td>${item.userid}</td>
-                            <td>${item.username}</td>
-                            <td>${item.sex}</td>
-                            <td><fmt:formatDate value="${item.birthyear}" dateStyle="medium"/></td>
-                            <td><fmt:formatDate value="${item.grade}" dateStyle="medium"/></td>
-                            <td>${item.collegeName}</td>
-                            <td>
-                                <button class="btn btn-default btn-xs btn-info"
-                                        onClick="location.href='/admin/editStudent?id=${item.userid}'">修改
-                                </button>
-                                <button class="btn btn-default btn-xs btn-danger btn-primary"
-                                        onClick="location.href='/admin/removeStudent?id=${item.userid}'">删除
-                                </button>
-                                <!--弹出框-->
-                            </td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
+                    <%
+                        for(User user : users){
+                    %>
+
+                    <tr>
+                        <td><%= user.getUsername() %></td>
+                        <td><%= user.getPassword() %></td>
+                        <td><%= user.getName() %></td>
+                        <td><%= user.getIdentity() %></td>
+                        <td><%= user.getFindMMproof() %></td>
+                        <td><%= user.getLogin_last_time() %></td>
+                        <td><%= user.getPassword_last_changed() %></td>
+                        <td>
+                            <a href="edit.do?username=<%= user.getUsername()%>">修改</a>/
+                            <a href="delete.do?username=<%=user.getUsername()%>" class="delete">删除</a>
+                        </td>
+                    </tr>
+
+                    <%
+                        }
+                    %>
                 </table>
+                <%
+                    }
+                %>
                 <div class="panel-footer">
                 </div>
             </div>
@@ -131,33 +138,7 @@
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-    $("#nav li:nth-child(2)").addClass("active");
-
-    function confirmd() {
-        var msg = "您真的确定要删除吗？！";
-        if (confirm(msg) == true) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    ;
-
-    $("#sub").click(function () {
-        $("#form1").submit();
-    });
-
-    <c:if test="${pagingVO != null}">
-    if (${pagingVO.curentPageNo} == ${pagingVO.totalCount}) {
-        $(".pagination li:last-child").addClass("disabled")
-    }
-    ;
-
-    if (${pagingVO.curentPageNo} == ${1}) {
-        $(".pagination li:nth-child(1)").addClass("disabled")
-    }
-    ;
-    </c:if>
+    $("#nav li:nth-child(3)").addClass("active");
 </script>
 </body>
 

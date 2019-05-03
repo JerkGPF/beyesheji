@@ -9,6 +9,26 @@ public class User {
     private String password_last_changed;  //上一次修改密码的时间
     private String login_last_time;    //最近一次登录的时间
 
+    public User() {
+        super();
+    }
+
+
+
+    public User(String username, String password, String name, String identity,
+                String findMMproof, String password_last_changed, String login_last_time) {
+        super();
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.identity = identity;
+        this.findMMproof = findMMproof;
+        this.password_last_changed = password_last_changed;
+        this.login_last_time = login_last_time;
+    }
+
+
+
     public String getUsername() {
         return username;
     }
@@ -33,6 +53,10 @@ public class User {
         this.name = name;
     }
 
+    public String getPassword_last_changed() {
+        return password_last_changed;
+    }
+
     public String getIdentity() {
         return identity;
     }
@@ -49,20 +73,16 @@ public class User {
         this.findMMproof = findMMproof;
     }
 
-    public String getPassword_last_changed() {
-        return password_last_changed;
-    }
-
-    public void setPassword_last_changed(String password_last_changed) {
-        this.password_last_changed = password_last_changed;
-    }
-
     public String getLogin_last_time() {
         return login_last_time;
     }
 
     public void setLogin_last_time(String login_last_time) {
         this.login_last_time = login_last_time;
+    }
+
+    public void setPassword_last_changed(String password_last_changed) {
+        this.password_last_changed = password_last_changed;
     }
 
     @Override

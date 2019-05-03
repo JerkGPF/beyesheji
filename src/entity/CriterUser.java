@@ -1,4 +1,4 @@
-package entity.student;
+package entity;
 
 public class CriterUser {
 

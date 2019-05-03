@@ -43,11 +43,11 @@ public class LoginServlet extends HttpServlet {
                 return;
             }
             if(identity.equals("教师")){
-                response.sendRedirect(request.getContextPath() + "/view/teacher/teacher.jsp");
+                response.sendRedirect(request.getContextPath() + "/teacherInquireServlet");
                 return;
             }
             if(identity.equals("管理员")){
-                response.sendRedirect(request.getContextPath() + "/view/admin/admin.jsp");
+                response.sendRedirect(request.getContextPath() + "/query.do");
                 return;
             }
         }

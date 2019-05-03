@@ -1,6 +1,6 @@
 package dao;
 
-import entity.student.CriterUser;
+import entity.CriterUser;
 import entity.User;
 
 import java.util.List;
