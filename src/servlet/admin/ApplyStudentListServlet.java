@@ -67,7 +67,7 @@ public class ApplyStudentListServlet extends HttpServlet {
         Map<StudentBasicInformation,List<LevelExam>> map = getAllLevelExamMap(students, yearTerm);
 
         session.setAttribute("map", map);
-        response.sendRedirect(request.getContextPath() + "/acdemic_dean/levelexaminationmanage/applystudents.jsp");
+        response.sendRedirect(request.getContextPath() + "/view/admin/grade/gradelist.jsp");
     }
 
     private Map<StudentBasicInformation, List<LevelExam>> getAllLevelExamMap(

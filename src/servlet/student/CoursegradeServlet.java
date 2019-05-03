@@ -70,7 +70,7 @@ public class CoursegradeServlet extends HttpServlet {
         //将每一位学生的成绩分析结果放入session中
         session.setAttribute("results", results);
         //重定向到jsp显示页面
-        response.sendRedirect(request.getContextPath() + "/view/acdemic_dean/acdemic/gradeanalysis.jsp");
+        response.sendRedirect(request.getContextPath() + "/view/admin/grade/gradeanalysis.jsp");
     }
 
     //获取成绩分析结果，把结果放入一个数组中
@@ -144,7 +144,7 @@ public class CoursegradeServlet extends HttpServlet {
 
         session.setAttribute("map", map);
 
-        response.sendRedirect(request.getContextPath() + "/view/acdemic_dean/acdemic/gradequery.jsp");
+        response.sendRedirect(request.getContextPath() + "/view/admin/grade/gradequery.jsp");
     }
 
 

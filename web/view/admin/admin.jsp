@@ -14,7 +14,6 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-
     <style>
         body{
             padding-top: 70px;
@@ -54,7 +53,7 @@
         <div class="col-md-2 ">
             <ul class="nav nav-pills nav-stacked" id="nav">
                 <li><a href="/optStudent.List">课程管理</a></li>
-                <li><a href="#">成绩管理</a></li>
+                <li><a href="/dean.level">成绩管理</a></li>
                 <li><a href="/query.do">用户管理</a></li>
                 <li><a href="<%=request.getContextPath()%>/view/student/modify/modifypassword.jsp">账号密码重置
                     <sapn class="glyphicon glyphicon-repeat pull-right"/>

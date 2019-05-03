@@ -1,18 +1,20 @@
 <%@ page import="entity.student.StudentBasicInformation" %>
-<%@ page import="entity.student.GradeAnalysisResult" %>
+<%@ page import="entity.student.StudentGrade" %>
+<%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
+<%@ page import="entity.admin.LevelExam" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 10403
   Date: 2019/5/3
-  Time: 16:01
+  Time: 16:00
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>学生成绩统计分析</title>
+    <title>总库查询</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
@@ -75,9 +77,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
-                        <h1 class="col-md-5">学生成绩统计分析</h1>
+                        <h1 class="col-md-5">考级学生名单</h1>
                         <form class="bs-example bs-example-form col-md-5" role="form" style="margin: 20px 0 10px 0;"
-                              action="<%=request.getContextPath()%>/gradeAnalysis.grade" id="form1" method="post">
+                              action="<%=request.getContextPath()%>/levelExam.List" id="form1" method="post">
                             <div class="col-md-4"></div>
                             <table>
                                 <tr>
@@ -100,62 +102,63 @@
                     </div>
                 </div>
                 <c:if test="${sessionScope.map != null }">
-                    <div>
-                        <table class="table table-bordered" >
-                            <tr>
-                                <th>学号</th>
-                                <th>学生姓名</th>
-                                <th>学院</th>
-                                <th>专业</th>
-                                <th>班级</th>
-                                <th>课程门数</th>
-                                <th>平均分</th>
-                                <th>总分</th>
-                                <th>平均学分成绩</th>
-                                <th>平均学分绩点</th>
-                                <th>绩点排名</th>
-                            </tr>
-                            <%
-                                Map<StudentBasicInformation, GradeAnalysisResult> results =
-                                        (Map<StudentBasicInformation, GradeAnalysisResult>)session.getAttribute("results");
-                                session.removeAttribute("results");
-                            %>
-                            <%
-                                for(Map.Entry<StudentBasicInformation,GradeAnalysisResult> entry : results.entrySet()){
-                                    StudentBasicInformation stu = entry.getKey();
-                                    GradeAnalysisResult gradeAnalysisResult = entry.getValue();
+                <div>
+                    <table class="table table-bordered" >
+                        <tr>
+                            <th>学年学期</th>
+                            <th>学号</th>
+                            <th>学生姓名</th>
+                            <th>学院</th>
+                            <th>专业</th>
+                            <th>班级</th>
+                            <th>考级课程编号</th>
+                            <th>考级课程</th>
+                            <th>报名时间</th>
+                            <th>考试时间</th>
+                            <th>报名金额</th>
+                            <th></th>
+                        </tr>
+                        <%
+                            Map<StudentBasicInformation,List<LevelExam>> map =
+                                    (Map<StudentBasicInformation,List<LevelExam>>)session.getAttribute("map");
+                            session.removeAttribute("map");
+                        %>
+                        <%
+                            for(Map.Entry<StudentBasicInformation,List<LevelExam>> entry : map.entrySet()){
+                                StudentBasicInformation stu = entry.getKey();
+                                List<LevelExam> levelExames = entry.getValue();
+                                for(LevelExam levelExame : levelExames){
 
+                        %>
+                        <tr>
+                            <td><%= levelExame.getYearTerm() %></td>
+                            <td><%= stu.getStudentId() %></td>
+                            <td><%= stu.getStudentName() %></td>
+                            <td><%= stu.getAcademy() %></td>
+                            <td><%= stu.getProfession() %></td>
+                            <td><%= stu.getClassName() %></td>
+                            <td><%= levelExame.getCourseId() %></td>
+                            <td><%= levelExame.getCourseName() %></td>
+                            <td><%= levelExame.getApplyTime() %></td>
+                            <td><%= levelExame.getExamTime() %></td>
+                            <td><%= levelExame.getExamCost() %></td>
+                        </tr>
 
-                            %>
-                            <tr>
-
-                                <td><%= stu.getStudentId()%></td>
-                                <td><%= stu.getStudentName()%></td>
-                                <td><%= stu.getAcademy()%></td>
-                                <td><%= stu.getProfession()%></td>
-                                <td><%= stu.getClassName()%></td>
-                                <td><%= gradeAnalysisResult.getCourseCount()%></td>
-                                <td><%= gradeAnalysisResult.getAverScore()%></td>
-                                <td><%= gradeAnalysisResult.getScore() %></td>
-                                <td><%= gradeAnalysisResult.getAverCreditGrade() %></td>
-                                <td><%= gradeAnalysisResult.getGradePoint() %></td>
-                                <td></td>
-
-                            </tr>
-                            <%
-
+                        <%
                                 }
-                            %>
-                        </table>
-                        </c:if>
-
-                <div class="panel-footer">
+                            }
+                        %>
+                    </table>
                 </div>
+                </c:if>
+
+                    <div class="panel-footer">
+                    </div>
+                </div>
+
             </div>
 
         </div>
-
-    </div>
 
         <!-- 模态框（Modal） -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -182,10 +185,10 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal -->
         </div>
-</div>
-<script src="/js/jquery-3.2.1.min.js"></script>
-<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-<script src="/js/bootstrap.min.js"></script>
+    </div>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         <%--设置菜单中--%>
         $("#nav li:nth-child(2)").addClass("active")
