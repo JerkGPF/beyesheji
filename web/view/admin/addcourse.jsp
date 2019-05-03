@@ -59,10 +59,10 @@
             </div>
         </div>
         <div>
-            <font color="RED">${requestScope.message }</font>
+            <font color="RED">${reqScope.message }</font>
         </div>
         <div class="panel-body">
-            <form name="reset" class="form-horizontal" role="form" action="<%=request.getContextPath()%>/addCourse.List"
+            <form name="reset" class="form-horizontal" role="form" action="<%=request.getContextPath()%>/addCourse"
                   id="editfrom"
                   method="post" onsubmit="return check()">
                 <div class="form-group">
