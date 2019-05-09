@@ -1,4 +1,6 @@
-<%--
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="entity.student.OptionalCourse" %>
+<%@ page import="java.util.Map" %><%--
   Created by IntelliJ IDEA.
   User: 10403
   Date: 2019/4/12
@@ -59,10 +61,8 @@
         <div class="col-md-2 ">
             <ul class="nav nav-pills nav-stacked" id="nav">
                 <li><a href="/teacherInquireServlet">个人信息</a></li>
-                <li><a href="#">班级信息</a></li>
                 <li><a href="#">课程信息</a></li>
-                <li><a href="#">成绩录入</a></li>
-                <li><a href="#">修改成绩</a></li>
+                <li><a href="/view/teacher/grade.jsp">成绩录入</a></li>
                 <li><a href="<%=request.getContextPath()%>/view/student/modify/modifypassword.jsp">账号密码重置
                     <sapn class="glyphicon glyphicon-repeat pull-right"/>
                 </a></li>
@@ -76,63 +76,76 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
-                        <h1 style="text-align: center;">个人信息</h1>
+                        <h1 class="col-md-7">所有课程</h1>
+                        <form class="bs-example bs-example-form col-md-5" role="form" style="margin: 20px 0 10px 0;"
+                              action="<%=request.getContextPath()%>/tea_course" id="form1" method="post">
+                            <div>
+                                <font color="RED">${sessionScope.message }	</font>
+                                <%session.removeAttribute("message"); %>
+                            </div>
+                            <table>
+                                <tr>
+                                    <td>学年学期:</td>
+                                    <td>
+                                        <select name="yearTerm" >
+                                            <option value=""></option>
+                                            <option value="2018秋季">2018秋季</option>
+                                            <option value="2018春季">2018春季</option>
+                                            <option value="2017秋季">2017秋季</option>
+                                            <option value="2017春季">2017春季</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-2"></div>
+                                        <input type="submit" value="查询"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
                     </div>
-                </div>
-                <div class="panel-body">
-                    <form name="reset" class="form-horizontal" role="form" action="<%=request.getContextPath()%>/teacherInformationServlet"
-                          id="editfrom"
-                          method="post" onsubmit="return check()">
-                        <div class="form-group">
-                            <label for="userID" class="col-sm-2 control-label">教师编号</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="teacherId" id="userID"
-                                       value="${requestScope.teacher.teacherId}" disabled>
-                            </div>
+                    <br><br>
+                    ${sessionScope.message }
+                    <%session.removeAttribute("message"); %>
+                    <c:if test="${sessionScope.map != null }">
+                        <div>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>学年学期</th>
+                                    <th>课程编号</th>
+                                    <th>课程名称</th>
+                                    <th>学分</th>
+                                    <th>课程类型</th>
+                                    <th>任课老师</th>
+                                    <th>上课方式</th>
+                                    <th>上课时间</th>
+                                    <%--<th>操作</th>--%>
+                                </tr></thead>
+                                <%
+                                    Map<OptionalCourse, String> map = (Map<OptionalCourse, String>)session.getAttribute("map");
+                                    for(Map.Entry<OptionalCourse, String> entry : map.entrySet()){
+                                %>
+                                <tr>
+                                    <td><%= entry.getKey().getYearTerm() %></td>
+                                    <td><%= entry.getKey().getCourseId() %></td>
+                                    <td><%= entry.getKey().getCourseName() %></td>
+                                    <td><%= entry.getKey().getCredit() %></td>
+                                    <td><%= entry.getKey().getCourseType() %></td>
+                                    <td><%= entry.getKey().getTeacher() %></td>
+                                    <td><%= entry.getKey().getClassWay() %></td>
+                                    <td><%= entry.getKey().getClassTime() %></td>
+                                    <%--<td>--%>
+                                        <%--<button class="btn btn-default btn-xs btn-info"--%>
+                                                <%--onClick="location.href='<%=request.getContextPath()%>/studentApply.optional?courseId=<%= entry.getKey().getCourseId()%>'">选课--%>
+                                        <%--</button>--%>
+                                    <%--</td>--%>
+                                </tr>
+                                <%
+                                    }
+                                %>
+                            </table>
                         </div>
-                        <div class="form-group">
-                            <label for="userName" class="col-sm-2 control-label">姓名</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="teacherName" id="userName"
-                                       placeholder="请输入姓名" value="${requestScope.teacher.teacherName }">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="sex" class="col-sm-2 control-label">性别</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="gender" id="sex"
-                                       placeholder="请输入性别" value="${requestScope.teacher.gender }" disabled>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="politicStatus" class="col-sm-2 control-label">政治面貌</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="politicstatus" id="politicStatus"
-                                       placeholder="" value="${requestScope.teacher.politicstatus }" >
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="Nation" class="col-sm-2 control-label">民族</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="nation" id="Nation"
-                                       placeholder="" value="${requestScope.teacher.nation }" disabled>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="nativePlace" class="col-sm-2 control-label">籍贯</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="nativeplace" id="nativePlace"
-                                       placeholder="" value="${requestScope.teacher.nativeplace }" disabled>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="academy" class="col-sm-2 control-label">学院</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="academy" id="academy"
-                                       placeholder="" value="${requestScope.teacher.academy }" disabled>
-                            </div>
-                        </div>
-                    </form>
+                    </c:if>
                 </div>
             </div>
         </div>
@@ -144,7 +157,7 @@
 <script src="/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     <%--设置菜单中--%>
-    $("#nav li:nth-child(3)").addClass("active")
+    $("#nav li:nth-child(2)").addClass("active")
 
 </script>
 </body>

@@ -84,11 +84,9 @@
                 </tr>
                 <%
                     List<StudentGrade> studentGrades = (List<StudentGrade>)session.getAttribute("studentGrades");
-
                 %>
                 <%
                     for(StudentGrade student : studentGrades){
-
                 %>
                 <tr>
                     <td><%= student.getYearTerm()%></td>

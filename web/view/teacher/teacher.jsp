@@ -59,10 +59,8 @@
         <div class="col-md-2 ">
             <ul class="nav nav-pills nav-stacked" id="nav">
                 <li><a href="/teacherInformationServlet">个人信息</a></li>
-                <li><a href="#">班级信息</a></li>
                 <li><a href="/view/teacher/information/courseinformation.jsp">课程信息</a></li>
-                <li><a href="#">成绩录入</a></li>
-                <li><a href="#">修改成绩</a></li>
+                <li><a href="/view/teacher/grade.jsp">成绩录入</a></li>
                 <li><a href="<%=request.getContextPath()%>/view/student/modify/modifypassword.jsp">账号密码重置
                     <sapn class="glyphicon glyphicon-repeat pull-right"/>
                 </a></li>

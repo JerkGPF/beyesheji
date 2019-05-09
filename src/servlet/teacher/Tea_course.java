@@ -1,10 +1,10 @@
-package servlet.student;
+package servlet.teacher;
 
 import dao.student.OptionalCourseDAO;
 import dao.student.StudentOptCourseDAO;
+import entity.User;
 import entity.student.OptionalCourse;
 import entity.student.StudentOptCourse;
-import entity.User;
 import impl.student.OptionalCourseDAOImpl;
 import impl.student.StudentOptCourseDAOImpl;
 
@@ -20,18 +20,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet("*.optional")
-public class OptionalCourseServlet extends HttpServlet {
+@WebServlet("/tea_course")
+public class Tea_course extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     OptionalCourseDAO oc = new OptionalCourseDAOImpl();
     StudentOptCourseDAO soc = new StudentOptCourseDAOImpl();
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doGet(req, resp);
     }
 
-
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //1.获取ServletPath
         String servletPath = request.getServletPath();
@@ -46,12 +46,6 @@ public class OptionalCourseServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    //查询选修课程信息
-    @SuppressWarnings("unused")
-    private void queryOptionalCourse(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
@@ -70,29 +64,6 @@ public class OptionalCourseServlet extends HttpServlet {
         }
         session.setAttribute("map", map);
 
-        response.sendRedirect(request.getContextPath() + "/view/student/student.jsp");
-    }
-
-    //学生报名选修课程
-    @SuppressWarnings("unused")
-    private void studentApply(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        String courseId = request.getParameter("courseId");
-
-
-        StudentOptCourse studentOptCourse = new StudentOptCourse(user.getUsername(), courseId);
-        if(soc.get(studentOptCourse) != null){
-            session.setAttribute("message", "该课程已报名，请勿重复报名!");
-            response.sendRedirect(request.getContextPath() + "/view/student/student.jsp");
-            return;
-        }
-        soc.insert(studentOptCourse);
-
-        session.setAttribute("message", "报名成功!");
-
-
-        response.sendRedirect(request.getContextPath() + "/view/student/student.jsp");
+        response.sendRedirect(request.getContextPath() + "/view/teacher/information/courseinformation.jsp");
     }
 }

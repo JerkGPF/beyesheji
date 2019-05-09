@@ -24,19 +24,14 @@ public class LoginServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");//防止乱码
-
-
         //获取请求参数username和password
         String username = request.getParameter("username");
-
         //从数据库获取登录账号信息
         User user = get(username);
-
         //将查到的user放进session中
         if(user != null){
             String identity = user.getIdentity();
             request.getSession().setAttribute("user", user);
-
             //根据登录账号的身份不同重定向到不同的页面
             if(identity.equals("学生")){
                 response.sendRedirect(request.getContextPath() + "/view/student/student.jsp");

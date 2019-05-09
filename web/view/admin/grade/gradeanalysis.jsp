@@ -85,10 +85,10 @@
                                     <td>
                                         <select name="yearTerm" >
                                             <option value=""></option>
+                                            <option value="2018秋季">2018秋季</option>
+                                            <option value="2018春季">2018春季</option>
                                             <option value="2017秋季">2017秋季</option>
                                             <option value="2017春季">2017春季</option>
-                                            <option value="2016秋季">2016秋季</option>
-                                            <option value="2016春季">2016春季</option>
                                         </select>
                                     </td>
                                     <td>
