@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 09/05/2019 16:02:13
+ Date: 11/05/2019 17:29:31
 */
 
 SET NAMES utf8mb4;
@@ -312,7 +312,8 @@ INSERT INTO `studentgrade` VALUES ('2018春季', 4225111212, '小明', 'HFP1811'
 DROP TABLE IF EXISTS `studentoptcourse`;
 CREATE TABLE `studentoptcourse`  (
   `studentId` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `courseId` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL
+  `courseId` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  INDEX `courseId`(`courseId`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -328,6 +329,8 @@ INSERT INTO `studentoptcourse` VALUES ('4225111212', 'MPL1797');
 INSERT INTO `studentoptcourse` VALUES ('4225111212', 'MPL1798');
 INSERT INTO `studentoptcourse` VALUES ('4225111212', 'MPL1799');
 INSERT INTO `studentoptcourse` VALUES ('4225111212', 'MKL886');
+INSERT INTO `studentoptcourse` VALUES ('4225111212', 'MKL768');
+INSERT INTO `studentoptcourse` VALUES ('123456', 'HFP1798');
 
 -- ----------------------------
 -- Table structure for teacherinformation
@@ -351,17 +354,34 @@ CREATE TABLE `teacherinformation`  (
 -- ----------------------------
 -- Records of teacherinformation
 -- ----------------------------
-INSERT INTO `teacherinformation` VALUES ('123456', '小英', '女', '党员', '汉族', '广东广州', '计算机学院', '计算机科学与技术', '15626438843', '123th@126.com', '广州市越秀区区庄地铁口');
+INSERT INTO `teacherinformation` VALUES ('123456', '小英', '女', '党员', '汉族', '广东广州', '计算机学院', '计算机科学与技术', '123456', '江苏南京', '123@qq.com');
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user`  (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES (1, '123', '123');
+INSERT INTO `user` VALUES (2, '123456', '123456');
 
 -- ----------------------------
 -- Table structure for users
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users`  (
-  `username` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `password` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `username` char(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `password` char(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `identity` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `identity` char(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `findMMproof` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `login_last_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `password_last_changed` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -371,8 +391,8 @@ CREATE TABLE `users`  (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('123456', '123456', '小英     ', '教师', '123456 ', '2019-05-03 15:48:30', '2019-05-03 15:48:30');
-INSERT INTO `users` VALUES ('4225111212', '123456', '小明', '学生', '42048015140', '2018-03-20 14:42:10', '2018-03-20 14:42:10');
-INSERT INTO `users` VALUES ('admin', 'admin', '管理员', '管理员', '123456789', '2018-03-20 14:53:46', '2018-03-20 14:53:46');
+INSERT INTO `users` VALUES ('123456', '123456', '小英            ', '教师', '123456', '2019-05-11 13:52:27', '2019-05-11 13:52:27');
+INSERT INTO `users` VALUES ('4225111212', '123456', '小明    ', '学生', '123456 ', '2019-05-11 13:54:57', '2019-05-11 13:54:57');
+INSERT INTO `users` VALUES ('admin', 'admin', '管理员   ', '管理员', '123456', '2019-05-11 13:52:55', '2019-05-11 13:52:55');
 
 SET FOREIGN_KEY_CHECKS = 1;
