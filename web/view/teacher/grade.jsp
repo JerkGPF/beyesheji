@@ -134,8 +134,9 @@
                             <td><%= student.getCourseId()%></td>
                             <td><%= student.getCourseName()%></td>
                             <td><%= student.getScore() %></td>
-                            <td><button class="btn btn-default btn-xs btn-info"
-                                        onClick="location.href='<%=request.getContextPath()%>/view/teacher/grade_modify.jsp?courseId=<%= student.getCourseId()%>&studentId=<%=student.getStudentId()%>'">成绩
+                            <td>
+                                <button class="btn btn-default btn-xs btn-info"
+                                        onClick="location.href='<%=request.getContextPath()%>/gradeModify?courseId=<%= student.getCourseId()%>&studentId=<%=student.getStudentId()%>'">成绩
                             </button></td>
                         </tr>
                         <%

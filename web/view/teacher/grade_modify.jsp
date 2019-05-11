@@ -83,21 +83,21 @@
                         <div class="form-group">
                             <div class="col-sm-10">
                                 <input readonly="readonly" type="hidden" class="form-control" name="courseid"
-                                       id="inputEmail3" value="${selectedCourse.courseid}">
+                                       id="inputEmail3" value="${requestScope.studentOptCourse.courseId}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">学号</label>
                             <div class="col-sm-10">
                                 <input readonly="readonly" type="text" class="form-control" name="studentid"
-                                       id="inputEmail3" value="${selectedCourse.studentid}">
+                                       id="inputEmail3" value="${requestScope.studentOptCourse.studentId}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">姓名</label>
                             <div class="col-sm-10">
                                 <input readonly="readonly" type="text" name="name" class="form-control"
-                                       id="inputPassword3" value="${selectedCourse.studentCustom.username}">
+                                       id="inputPassword3" value="${requestScope.studentOptCourse.username}">
                             </div>
                         </div>
                         <div class="form-group">
