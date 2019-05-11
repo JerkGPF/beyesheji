@@ -58,17 +58,15 @@
                 <h1 style="text-align: center;">修改用户信息</h1>
             </div>
         </div>
-        <div>
-            <font color="RED">${requestScope.message }</font>
-        </div>
         <div class="panel-body">
             <form name="reset" class="form-horizontal" role="form" action="<%=request.getContextPath()%>/update.do"
                   id="editfrom"
                   method="post" onsubmit="return check()">
+                <td><input type="hidden" name="oldUsername" value="${requestScope.user.username} "/></td>
                 <div class="form-group">
                     <label for="userID" class="col-sm-2 control-label">用户id</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="oldUsername" id="userID"
+                        <input type="text" class="form-control" name="username" id="userID"
                                value="${requestScope.user.username} ">
                     </div>
                 </div>

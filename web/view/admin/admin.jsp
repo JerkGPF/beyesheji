@@ -69,6 +69,10 @@
                 <div class="panel-heading">
                     <div class="row">
                         <h1 class="col-md-5">用户名单管理</h1>
+                        <div>
+                            <font color="RED">${requestScope.message }</font>
+                            <br><br>
+                        </div>
                         <form class="bs-example bs-example-form col-md-5" role="form" style="margin: 20px 0 10px 0;"
                               action="query.do" id="form1" method="post">
                             <div class="input-group">

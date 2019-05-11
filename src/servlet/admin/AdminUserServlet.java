@@ -131,7 +131,7 @@ public class AdminUserServlet extends HttpServlet {
 			long count = userDAO.getCountWithName(username);
 			//2.2 若返回值大于0，则响应updateuser.jsp页面
 			//通过转发的方式来响应updateuser.jsp
-			if(count > 0){				
+			if(count > 0){
 				//2.2.1 要求在updateuser.jsp页面显示一个错误信息：用户名username已经被占用，请重新选择！
 				//在request中放入一个属性message：用户名username已经被占用，请重新选择！ 
 				//在页面上通过request.getAttribute("message")的方式来显示
@@ -139,7 +139,7 @@ public class AdminUserServlet extends HttpServlet {
 				request.setAttribute("message", message);
 				//2.2.2 updatecustomer.jsp的表单可以回显。
 				//address, phone 显示提交表单的新的值，而username显示oldName，而不是新提交的username
-				request.getRequestDispatcher("/view/admin/updateuser.jsp").forward(request, response);
+				request.getRequestDispatcher("/view/admin/admin.jsp").forward(request, response);
 				
 				//2.2.3 结束办法：return
 				return ;
@@ -159,7 +159,6 @@ public class AdminUserServlet extends HttpServlet {
 	private void edit(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
         request.setCharacterEncoding("UTF-8");//防止乱码
 		String forwardPath = "/error.jsp";
-		
 		//1.获取请求参数id
 		String username = request.getParameter("username");
 		
@@ -176,7 +175,5 @@ public class AdminUserServlet extends HttpServlet {
 		}
 		//4.响应updatecustomer.jsp页面：转发		
 		request.getRequestDispatcher(forwardPath).forward(request, response);
-		
-		
 	}
 }

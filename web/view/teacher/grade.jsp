@@ -1,9 +1,8 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="entity.student.OptionalCourse" %>
-<%@ page import="java.util.Map" %>
+<%@ page import="entity.student.StudentBasicInformation" %>
 <%@ page import="entity.student.StudentGrade" %>
 <%@ page import="java.util.List" %>
-<%@ page import="entity.Course" %>
+<%@ page import="java.util.Map" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 10403
@@ -81,50 +80,78 @@
                 <div class="panel-heading">
                     <div class="row">
                         <h1 class="col-md-5">学生成绩录入</h1>
+                        <form class="bs-example bs-example-form col-md-5" role="form" style="margin: 20px 0 10px 0;"
+                              action="<%=request.getContextPath()%>/teagrade" id="form1" method="post">
+                            <div class="col-md-4"></div>
+                            <table>
+                                <tr>
+                                    <td>学年学期:</td>
+                                    <td>
+                                        <select name="yearTerm" >
+                                            <option value=""></option>
+                                            <option value="2018秋季">2018秋季</option>
+                                            <option value="2018春季">2018春季</option>
+                                            <option value="2017秋季">2017秋季</option>
+                                            <option value="2017春季">2017春季</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="查询"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
                     </div>
                 </div>
-                <%
-                    List<Course> courses = (List<Course>)request.getAttribute("courses");
-                    if(courses != null && courses.size() > 0){
-                %>
-                <table class="table table-bordered">
-                    <tr>
-                        <th>学号</th>
-                        <th>姓名</th>
-                        <th>课程编号</th>
-                        <th>课程名称</th>
-                        <th>分数</th>
-                        <th>操作</th>
-                    </tr>
-                    <%
-                        for(Course course : courses){
-                    %>
-                    <tr>
-                        <td><%= course.getStudentId() %></td>
-                        <td><%= course.getStudentName() %></td>
-                        <td><%= course.getCourseId() %></td>
-                        <td><%= course.getCourseName() %></td>
-                        <td><%= course.getScore() %></td>
-                        <td>
-                            <a href="edit.do?username=<%= course.getStudentId()%>">修改</a>/
-                            <a href="delete.do?username=<%=course.getStudentId()%>" class="delete">录入</a>
-                        </td>
-                    </tr>
+                <c:if test="${sessionScope.map != null }">
+                <div>
+                    <table class="table table-bordered" >
+                        <tr>
+                            <th>学年学期</th>
+                            <th>学号</th>
+                            <th>学生姓名</th>
+                            <th>课程编号</th>
+                            <th>课程名称</th>
+                            <th>成绩</th>
+                            <th>操作</th>
 
-                    <%
-                        }
-                    %>
-                </table>
-                <%
-                    }
-                %>
-                <div class="panel-footer">
+                        </tr>
+                        <%
+                            Map<StudentBasicInformation,List<StudentGrade>> map =
+                                    (Map<StudentBasicInformation,List<StudentGrade>>)session.getAttribute("map");
+                            session.removeAttribute("map");
+                        %>
+                        <%
+                            for(Map.Entry<StudentBasicInformation,List<StudentGrade>> entry : map.entrySet()){
+                                StudentBasicInformation stu = entry.getKey();
+                                List<StudentGrade> studentGrades = entry.getValue();
+                                for(StudentGrade student : studentGrades){
+                        %>
+                        <tr>
+                            <td><%= student.getYearTerm()%></td>
+                            <td><%= student.getStudentId()%></td>
+                            <td><%= student.getStudentName()%></td>
+                            <td><%= student.getCourseId()%></td>
+                            <td><%= student.getCourseName()%></td>
+                            <td><%= student.getScore() %></td>
+                            <td><button class="btn btn-default btn-xs btn-info"
+                                        onClick="location.href='<%=request.getContextPath()%>/view/teacher/grade_modify.jsp?courseId=<%= student.getCourseId()%>&studentId=<%=student.getStudentId()%>'">成绩
+                            </button></td>
+                        </tr>
+                        <%
+                                }
+                            }
+                        %>
+                    </table>
+                    </c:if>
+
+                    <div class="panel-footer">
+                    </div>
                 </div>
+
             </div>
-
         </div>
-
-    </div>
+        </div>
 </div>
 <script src="/js/jquery-3.2.1.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。也可以根据需要只加载单个插件。 -->
